@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'android-apt'
+apply plugin: 'com.jakewharton.butterknife'
+
 def buildV = rootProject.ext.buildV
 def lib = rootProject.ext.lib
 
@@ -29,6 +32,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile lib.appcompat
+    compile lib.design
+    compile lib.constraint
     compile lib.okhttp
     compile lib.retrofit
     compile lib.retrofit_convert
@@ -36,9 +41,10 @@ dependencies {
     compile lib.okio
     compile lib.gson
     compile lib.glide
-    compile lib.rxjava
-    compile lib.rxandroid
+//    compile lib.rxjava
+//    compile lib.rxandroid
     compile lib.logger
     compile lib.butterknife
+    apt lib.butterknife_complier
     testCompile lib.junit
 }

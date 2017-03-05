@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'android-apt'
+
 def buildV = rootProject.ext.buildV
 def lib = rootProject.ext.lib
 
@@ -23,12 +25,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile lib.appcompat
-    compile lib.design
-    compile lib.constraint
-    testCompile lib.junit
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':common')
+    apt lib.butterknife_complier
 }
