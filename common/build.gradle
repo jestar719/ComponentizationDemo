@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+def buildV = rootProject.ext.buildV
+def lib = rootProject.ext.lib
+
+android {
+    compileSdkVersion buildV.cSdk
+    buildToolsVersion buildV.bSdk
+
+    defaultConfig {
+        minSdkVersion buildV.mSdk
+        targetSdkVersion buildV.tSdk
+        versionCode buildV.vCode
+        versionName buildV.vName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile lib.appcompat
+    compile lib.okhttp
+    compile lib.retrofit
+    compile lib.retrofit_convert
+    compile lib.retrofit_adapters
+    compile lib.okio
+    compile lib.gson
+    compile lib.glide
+    compile lib.rxjava
+    compile lib.rxandroid
+    compile lib.logger
+    testCompile lib.junit
+}
