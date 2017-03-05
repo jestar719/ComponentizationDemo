@@ -1,4 +1,4 @@
-package cn.jestar.common.image;
+package cn.jestar.common.glide;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -7,6 +7,10 @@ import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
 
 import java.io.File;
+
+import cn.jestar.common.image.ImageLoaderStrategy;
+import cn.jestar.common.image.ImageOptions;
+import cn.jestar.common.image.Resize;
 
 /**
  * Created by jestar on 17-3-5.
