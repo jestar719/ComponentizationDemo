@@ -39,5 +39,6 @@ dependencies {
     compile lib.rxjava
     compile lib.rxandroid
     compile lib.logger
+    compile lib.butterknife
     testCompile lib.junit
 }
