@@ -1,7 +1,5 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'android-apt'
-
 def buildV = rootProject.ext.buildV
 def lib = rootProject.ext.lib
 
@@ -15,7 +13,13 @@ android {
         versionCode buildV.vCode
         versionName buildV.vName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -26,6 +30,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':common')
-    apt lib.butterknife_complier
+//        compile project(':girl')
+    annotationProcessor lib.arouter_compiler
+    annotationProcessor lib.butterknife_complier
+    compile project(':projectlibrary')
+//        compile project(':girl')
 }
+

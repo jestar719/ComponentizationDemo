@@ -5,8 +5,10 @@ import android.support.annotation.NonNull;
 
 import java.util.concurrent.TimeUnit;
 
+import cn.jestar.common.utils.LogUtils;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -26,6 +28,7 @@ public class NetCore {
     }
 
     public static void init(Context context) {
+        LogUtils.i("init");
         if (sOkHttpClient != null)
             return;
         OkHttpClient.Builder okHttpBuilder = getOkHttpBuilder(context);
@@ -42,10 +45,13 @@ public class NetCore {
 
     @NonNull
     private static OkHttpClient.Builder getOkHttpBuilder(Context context) {
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(IO_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(IO_TIMEOUT, TimeUnit.SECONDS)
+                .addInterceptor(httpLoggingInterceptor)
                 .cache(new Cache(context.getCacheDir(), NET_CACHE_SIZE));
     }
 

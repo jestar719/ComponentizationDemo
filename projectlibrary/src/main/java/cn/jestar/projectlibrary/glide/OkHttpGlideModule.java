@@ -1,4 +1,4 @@
-package cn.jestar.common.glide;
+package cn.jestar.projectlibrary.glide;
 
 import android.content.Context;
 

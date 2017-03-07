@@ -1,4 +1,4 @@
-package cn.jestar.common.glide;
+package cn.jestar.projectlibrary.glide;
 
 import android.content.Context;
 
@@ -19,7 +19,6 @@ import okhttp3.OkHttpClient;
 class GlideModuleFactory implements com.bumptech.glide.load.model.ModelLoaderFactory<com.bumptech.glide.load.model.GlideUrl, java.io.InputStream> {
     @Override
     public ModelLoader<GlideUrl, InputStream> build(Context context, GenericLoaderFactory factories) {
-        NetCore.init(context);
         return new OkHttpLoader(NetCore.getOkHttpClient());
     }
 

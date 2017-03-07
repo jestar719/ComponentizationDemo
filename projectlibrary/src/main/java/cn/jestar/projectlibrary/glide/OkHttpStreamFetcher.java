@@ -1,4 +1,4 @@
-package cn.jestar.common.glide;
+package cn.jestar.projectlibrary.glide;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.data.DataFetcher;

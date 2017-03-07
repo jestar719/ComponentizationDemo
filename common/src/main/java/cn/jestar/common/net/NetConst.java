@@ -5,5 +5,5 @@ package cn.jestar.common.net;
  */
 
 interface NetConst {
-    String BASE_URL = "";
+    String BASE_URL = "http://gank.io/api/";
 }

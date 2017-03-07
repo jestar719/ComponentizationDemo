@@ -1,0 +1,57 @@
+def isDev = rootProject.ext.dev;
+if (isDev) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+def buildV = rootProject.ext.buildV
+def lib = rootProject.ext.lib
+
+android {
+    compileSdkVersion buildV.cSdk
+    buildToolsVersion buildV.bSdk
+    defaultConfig {
+        if (isDev) {
+            applicationId "cn.jestar.componentizationdemo"
+        }
+        minSdkVersion buildV.mSdk
+        targetSdkVersion buildV.tSdk
+        versionCode buildV.vCode
+        versionName buildV.vName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            if (isDev) {
+                manifest.srcFile 'src/main/dev/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/lib/AndroidManifest.xml'
+                //release模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'dev/**'
+                }
+            }
+        }
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':projectlibrary')
+    annotationProcessor lib.arouter_compiler
+    annotationProcessor lib.butterknife_complier
+}
+
+

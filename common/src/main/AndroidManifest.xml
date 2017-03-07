@@ -7,7 +7,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true">
         <meta-data
-            android:name="cn.jestar.common.glide.OkHttpGlideModule"
+            android:name="cn.jestar.projectlibrary.glide.OkHttpGlideModule"
             android:value="GlideModule"/>
     </application>
 

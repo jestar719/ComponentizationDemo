@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'android-apt'
 apply plugin: 'com.jakewharton.butterknife'
 
 def buildV = rootProject.ext.buildV
@@ -14,9 +13,7 @@ android {
         targetSdkVersion buildV.tSdk
         versionCode buildV.vCode
         versionName buildV.vName
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -34,17 +31,22 @@ dependencies {
     compile lib.appcompat
     compile lib.design
     compile lib.constraint
+    compile lib.recyclerview
+    compile lib.cardview
     compile lib.okhttp
+    compile lib.okhttplog
     compile lib.retrofit
     compile lib.retrofit_convert
     compile lib.retrofit_adapters
     compile lib.okio
     compile lib.gson
     compile lib.glide
-//    compile lib.rxjava
-//    compile lib.rxandroid
+    compile lib.rxjava
+    compile lib.rxandroid
     compile lib.logger
     compile lib.butterknife
-    apt lib.butterknife_complier
+    compile lib.baseRecyclerviewAdapterHelper
+//    apt lib.butterknife_complier
+    annotationProcessor lib.butterknife_complier
     testCompile lib.junit
 }
